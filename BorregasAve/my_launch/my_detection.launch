@@ -21,41 +21,51 @@
   <node pkg="points2image" type="points2image" name="points2image" />
 
   <!-- ssd -->
-  <include file="$(find vision_ssd_detect)/launch/vision_ssd_detect.launch">
-    <arg name="use_gpu" value="$(arg is_use_gpu)" />
+  <!-- /home/aw2/autoware.ai/install/vision_darknet_detect/share/vision_darknet_detect/launch/vision_yolo3_detect.launch -->
+  <include file="$(find vision_darknet_detect)/launch/vision_yolo3_detect.launch">
+    <!-- <arg name="use_gpu" value="$(arg is_use_gpu)" /> -->
     <arg name="score_threshold" default="0.8" />
-    <arg name="network_definition_file" default="$(env HOME)/ssdcaffe/models/VGGNet/VOC0712Plus/SSD_512x512_ft/deploy.prototxt" />
-    <arg name="pretrained_model_file" default="$(env HOME)/ssdcaffe/models/VGGNet/VOC0712Plus/SSD_512x512_ft/VGG_VOC0712Plus_SSD_512x512_ft_iter_160000.caffemodel" />
+    <arg name="network_definition_file" default="$(find vision_darknet_detect)/darknet/cfg/yolov3.cfg" />
+    <arg name="pretrained_model_file" default="$(find vision_darknet_detect)/darknet/data/yolov3.weights" />
   </include>
 
   <!-- range_fusion -->
-  <include file="$(find range_fusion)/launch/range_fusion.launch">
-    <arg name="car" value="$(arg car_detection)" />
-    <arg name="pedestrian" value="$(arg pedestrian_detection)" />
+  <include file="$(find range_vision_fusion)/launch/range_vision_fusion.launch">
+    <!-- <arg name="car" value="$(arg car_detection)" />
+    <arg name="pedestrian" value="$(arg pedestrian_detection)" /> -->
   </include>
 
-  <!-- dummy_track -->
-  <include file="$(find vision_dummy_track)/launch/vision_dummy_track.launch">
-    <arg name="car" value="$(arg car_detection)" />
-    <arg name="pedestrian" value="$(arg pedestrian_detection)" />
-  </include>
+  <!-- Obsoluted -->
+        <!-- dummy_track -->
+        <!-- <include file="$(find vision_dummy_track)/launch/vision_dummy_track.launch">
+          <arg name="car" value="$(arg car_detection)" />
+          <arg name="pedestrian" value="$(arg pedestrian_detection)" />
+        </include> -->
+  <!-- Obsoluted -->
 
-  <!-- obj_reproj -->
-  <include file="$(find obj_reproj)/launch/obj_reproj.launch">
-    <arg name="car" value="$(arg car_detection)" />
-    <arg name="pedestrian" value="$(arg pedestrian_detection)" />
-  </include>
+
+  <!-- Obsoluted -->
+    <!-- obj_reproj -->
+     <!-- <include file="$(find obj_reproj)/launch/obj_reproj.launch">
+        <arg name="car" value="$(arg car_detection)" />
+        <arg name="pedestrian" value="$(arg pedestrian_detection)" />
+      </include> -->
+  <!-- Obsoluted -->
 
   <!-- euclidean_cluster -->
   <include file="$(find lidar_euclidean_cluster_detect)/launch/lidar_euclidean_cluster_detect.launch">
     <arg name="cluster_size_min" value="5" />
   </include>
 
-  <!-- obj_fusion -->
-  <include file="$(find obj_fusion)/launch/obj_fusion.launch">
-    <arg name="car" value="$(arg car_detection)" />
-    <arg name="pedestrian" value="$(arg pedestrian_detection)" />
-  </include>
+  <!-- Obsoluted -->
+        <!-- obj_fusion
+        <include file="$(find obj_fusion)/launch/obj_fusion.launch">
+          <arg name="car" value="$(arg car_detection)" />
+          <arg name="pedestrian" value="$(arg pedestrian_detection)" />
+        </include> -->
+  <!-- Obsoluted -->
+
+
 
   <!-- traffic light recognition -->
   <!-- feat_proj -->
