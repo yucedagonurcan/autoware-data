@@ -2,7 +2,7 @@
 
   <!-- setting path parameter -->
   <arg name="use_openmp" value="false" />
-  <arg name="get_height" value="true" />
+  <arg name="get_height" value="false" />
 
   <arg name="x" value="0.3679201" />
   <arg name="y" value="0.0" />
@@ -23,6 +23,9 @@
   <param name="tf_pitch" value="$(arg pitch)" />
   <param name="tf_roll" value="$(arg roll)" />
   <param name="localizer" value="velodyne" />
+  <!-- Added resolution parameter because ndt_matching was failing in SingleLaneRoad:  https://github.com/autowarefoundation/autoware/issues/1998-->
+  <param name="resolution" value="4.16" />
+
 
   <!-- vel/pose connect -->
   <arg name="topic_twist_stamped" default="/estimate_twist" />
